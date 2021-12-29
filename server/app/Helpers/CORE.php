@@ -95,6 +95,24 @@ final class CORE
     }
 
     /**
+     * Default values
+     *
+     * @return array
+     */
+    public static function defaults(): array
+    {
+        return array(
+            'sitename' => 'ldaply',
+            'version' => 2021120100,
+            'release' => 'v1.0',
+            'language' => 'en',
+            'apptoken' => 'LDwe34D45mdsckn0349u',
+            'passwordminlength' => 10,
+            'passwordregex' => '^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$'
+        );
+    }
+
+    /**
      * Return true if given value is integer or string with integer value
      *
      * @param mixed $value String or Int

@@ -1,0 +1,106 @@
+version: "3.7"
+
+services:
+  # Kitchen Planner
+  ## Mariadb
+  ldaply-mariadb:
+    image: mariadb
+    ports:
+      - 40000:3306
+    volumes:
+      - ldaply_database:/var/lib/mysql
+      - ./data/db/dump/init/ldaply.sql:/docker-entrypoint-initdb.d/ldaply.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: LcxC277FGr4t8K+rv/d3]N
+      MYSQL_DATABASE: ldaply
+
+  ## Server
+  ldaply-server:
+    build:
+      context: ./server
+    image: ldaply-server:2021050400
+    volumes:
+      - ./server:/var/www/
+    ports:
+      - "40001:80"
+    depends_on:
+      - ldaply-mariadb
+
+  ## Client
+  ldaply-client:
+    build:
+      context: ./client
+    image: ldaply-client:2021050400
+    command: bash -c "npm ci && npm run start"
+    volumes:
+      - ./client:/var/www/html/ldaply
+    ports:
+      - "40002:4200"
+    depends_on:
+      - ldaply-server
+
+  openldap1:
+    build: 
+      context: ./docker/openLDAP/1
+    image: openldap:2021050400
+    ports:
+      - "40004:389"
+      - "40005:636"
+    environment:
+      LDAP_ORGANISATION: "Neustadt"
+      LDAP_DOMAIN: "digitalschool.multamedio.de"
+      LDAP_BASE_DN: "dc=digitalschool,dc=multamedio,dc=de"
+      LDAP_ADMIN_PASSWORD: "dbw2o3AD_5fm34Daw8u345da?!32"
+      LDAP_TLS: "false"
+    volumes:
+      - "ldap1:/var/lib/ldap"
+      - "slapd1.d:/etc/ldap/slapd.d"
+
+  openldap2:
+    build: 
+      context: ./docker/openLDAP/2
+    image: openldap:2021050400
+    ports:
+      - "40006:389"
+      - "40007:636"
+    environment:
+      LDAP_ORGANISATION: "Neustadt"
+      LDAP_DOMAIN: "digitalschool.multamedio.de"
+      LDAP_BASE_DN: "dc=digitalschool,dc=multamedio,dc=de"
+      LDAP_ADMIN_PASSWORD: "dbw2o3AD_5fm34Daw8u345da?!32"
+      LDAP_TLS: "false"
+    volumes:
+      - "ldap2:/var/lib/ldap"
+      - "slapd2.d:/etc/ldap/slapd.d"
+
+  # phpLDAPadmin
+  phpldapadmin1:
+    image: osixia/phpldapadmin:0.9.0
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "openldap1"
+      PHPLDAPADMIN_HTTPS: "false"
+      LDAP_BASE: "dc=digitalschool,dc=multamedio,dc=de"
+      LDAP_ADMIN: "cn=admin,dc=digitalschool,dc=multamedio,dc=de"
+    ports:
+      - "40008:80"
+    depends_on:
+      - openldap1
+
+  phpldapadmin2:
+    image: osixia/phpldapadmin:0.9.0
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "openldap2"
+      PHPLDAPADMIN_HTTPS: "false"
+      LDAP_BASE: "dc=digitalschool,dc=multamedio,dc=de"
+      LDAP_ADMIN: "cn=admin,dc=digitalschool,dc=multamedio,dc=de"
+    ports:
+      - "40009:80"
+    depends_on:
+      - openldap2
+
+volumes:
+  ldaply_database:
+  ldap1:
+  slapd1.d:
+  ldap2:
+  slapd2.d:

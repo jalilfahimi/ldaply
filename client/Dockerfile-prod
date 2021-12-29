@@ -1,0 +1,35 @@
+FROM ubuntu 
+ENV DEBIAN_FRONTEND=noninteractive 
+RUN apt-get update 
+RUN apt -y install software-properties-common
+RUN apt-get install -y apache2 
+RUN apt-get install -y apache2-utils
+
+# Install node
+RUN apt-get install --yes curl
+RUN curl --silent --location https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install --yes nodejs
+RUN apt-get install --yes build-essential
+
+# Create app directory
+WORKDIR /var/www/html/ldaply
+
+# Bundle app source
+COPY . .
+
+RUN a2enmod rewrite
+
+# Virtual host configuration
+COPY ./virtualhost /etc/apache2/sites-available/ldaply.conf
+RUN a2ensite ldaply.conf
+
+# Apache custom port configuration (port:40002)
+COPY ./ports.conf /etc/apache2/ports.conf
+
+#########################################################################################
+# Start
+EXPOSE 40002
+ADD start.sh /
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]

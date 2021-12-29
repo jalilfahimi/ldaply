@@ -28,6 +28,7 @@ final class DE extends ITranslation
             'default' => 'Default',
             'missinglangidentifier' => 'ACHTUNG: Identifier ${identifier} fehlt in ${filename}.',
             'missinglangplaceholder' => 'ACHTUNG: Platzhalter ${placeholder} konnte nicht konvertiert werden. Achten Sie darauf, die Platzhalter richtig zu übergeben.',
+            'loginfail' => 'Anmeldung fehlgeschlagen: Benutzername und/oder Passwort falsch!',
         ];
     }
 }

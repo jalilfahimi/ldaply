@@ -1,0 +1,27 @@
+<VirtualHost *:40002>
+    # Name und Alias unter welcher die Seite erreichbar sein soll
+    ServerName ldaply
+    ServerAlias ldaply
+ 
+    # Deine E-Mail-Adresse als Server-Admin
+    ServerAdmin jfahimi@multamedio.de
+    # Der Ort an welchem der Code liegt, der ausgeführt werden soll, wenn die Seite aufgerufen wird
+    DocumentRoot /var/www/html/ldaply/dist/
+    # Logs, die angelegt werden. Die Variable "${APACHE_LOG_DIR}" zeigt normalerweise auf "/var/log/apache2"
+    ErrorLog ${APACHE_LOG_DIR}/ldaply_error.log
+    CustomLog ${APACHE_LOG_DIR}/ldaply-1access.log combined
+ 
+	<Directory /var/www/html/ldaply/dist >
+
+		<IfModule mod_rewrite.c>
+		  RewriteEngine On
+		  RewriteBase /
+		  RewriteRule ^index\.html$ - [L]
+		  RewriteCond %{REQUEST_FILENAME} !-f
+		  RewriteCond %{REQUEST_FILENAME} !-d
+		  RewriteRule . /index.html [L]
+		</IfModule>
+
+	</Directory>
+	
+</VirtualHost>

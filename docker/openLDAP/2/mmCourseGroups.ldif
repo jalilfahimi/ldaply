@@ -1,0 +1,109 @@
+# mmCourseGroups (202008)
+# $Customized for OpenLDAP$
+################################################################################
+#
+# dn: cn=schema
+dn: cn=mmCourseGroups,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: mmCourseGroups
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.1
+    NAME 'mmCourseCategoryName'
+    DESC 'MultaMedio mmCourseCategoryName Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.2
+    NAME 'mmCourseCategoryDesc'
+    DESC 'MultaMedio mmCourseCategoryDesc Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.3
+    NAME 'mmCourseFullName'
+    DESC 'MultaMedio mmCourseFullName Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.4
+    NAME 'mmCourseShortName'
+    DESC 'MultaMedio mmCourseShortName Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.5
+    NAME 'mmCourseCategoryCreatedAt'
+    DESC 'MultaMedio mmCourseCategoryCreatedAt Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.6
+    NAME 'mmCourseCategoryCreatedBy'
+    DESC 'MultaMedio mmCourseCategoryCreatedBy Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.7
+    NAME 'mmCourseCategoryLastEditedAt'
+    DESC 'MultaMedio mmCourseCategoryLastEditedAt Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.8
+    NAME 'mmCourseCategoryLastEditedBy'
+    DESC 'MultaMedio mmCourseCategoryLastEditedBy Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.9
+    NAME 'mmCourseDeleted'
+    DESC 'MultaMedio mmCourseDeleted Attribute'
+    EQUALITY integerMatch
+    ORDERING integerOrderingMatch
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.10
+    NAME 'mmCourseDeletedAt'
+    DESC 'MultaMedio mmCourseDeletedAt Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.1.11
+    NAME 'mmCourseDeletedBy'
+    DESC 'MultaMedio mmCourseDeletedBy Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+################################################################################
+olcObjectClasses: ( 1.3.6.1.4.1.56822.1.1.1
+    NAME 'mmCourseGroups'
+    DESC 'MultaMedio mmCourseGroups Objectclass'
+    AUXILIARY
+    MUST (mmCourseCategoryCreatedAt $ mmCourseCategoryCreatedBy $ mmCourseCategoryName )
+    MAY ( mmCourseCategoryDesc $ mmCourseFullName $ mmCourseShortName $ mmCourseCategoryLastEditedAt $ mmCourseCategoryLastEditedBy $ mmCourseDeleted $ mmCourseDeletedAt $ mmCourseDeletedBy ) 
+    )
+#
+################################################################################

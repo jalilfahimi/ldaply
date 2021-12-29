@@ -1,0 +1,62 @@
+# AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify.
+# CRC32 5a027b6e
+dn: cn={15}mmCourseGroups
+objectClass: olcSchemaConfig
+cn: {15}mmCourseGroups
+olcAttributeTypes: {0}( 1.3.6.1.4.1.56822.1.1.1.1   NAME 'mmCourseCategoryNa
+ me'   DESC 'MultaMedio mmCourseCategoryName Attribute'   EQUALITY caseIgnor
+ eMatch   SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1.4.1.1466.115.12
+ 1.1.15' )
+olcAttributeTypes: {1}( 1.3.6.1.4.1.56822.1.1.1.2   NAME 'mmCourseCategoryDe
+ sc'   DESC 'MultaMedio mmCourseCategoryDesc Attribute'   EQUALITY caseIgnor
+ eMatch   SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1.4.1.1466.115.12
+ 1.1.15' )
+olcAttributeTypes: {2}( 1.3.6.1.4.1.56822.1.1.1.3   NAME 'mmCourseFullName' 
+   DESC 'MultaMedio mmCourseFullName Attribute'   EQUALITY caseIgnoreMatch  
+  SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' 
+ )
+olcAttributeTypes: {3}( 1.3.6.1.4.1.56822.1.1.1.4   NAME 'mmCourseShortName'
+    DESC 'MultaMedio mmCourseShortName Attribute'   EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1.4.1.1466.115.121.1.15
+ ' )
+olcAttributeTypes: {4}( 1.3.6.1.4.1.56822.1.1.1.5   NAME 'mmCourseCategoryCr
+ eatedAt'   DESC 'MultaMedio mmCourseCategoryCreatedAt Attribute'   EQUALITY
+  caseIgnoreMatch   SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1.4.1.1
+ 466.115.121.1.15'   SINGLE-VALUE   )
+olcAttributeTypes: {5}( 1.3.6.1.4.1.56822.1.1.1.6   NAME 'mmCourseCategoryCr
+ eatedBy'   DESC 'MultaMedio mmCourseCategoryCreatedBy Attribute'   EQUALITY
+  caseIgnoreMatch   SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1.4.1.1
+ 466.115.121.1.15'   SINGLE-VALUE   )
+olcAttributeTypes: {6}( 1.3.6.1.4.1.56822.1.1.1.7   NAME 'mmCourseCategoryLa
+ stEditedAt'   DESC 'MultaMedio mmCourseCategoryLastEditedAt Attribute'   EQ
+ UALITY caseIgnoreMatch   SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1
+ .4.1.1466.115.121.1.15'   SINGLE-VALUE   )
+olcAttributeTypes: {7}( 1.3.6.1.4.1.56822.1.1.1.8   NAME 'mmCourseCategoryLa
+ stEditedBy'   DESC 'MultaMedio mmCourseCategoryLastEditedBy Attribute'   EQ
+ UALITY caseIgnoreMatch   SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1
+ .4.1.1466.115.121.1.15'   SINGLE-VALUE   )
+olcAttributeTypes: {8}( 1.3.6.1.4.1.56822.1.1.1.9   NAME 'mmCourseDeleted'  
+  DESC 'MultaMedio mmCourseDeleted Attribute'   EQUALITY integerMatch   ORDE
+ RING integerOrderingMatch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.27   SINGLE-V
+ ALUE   )
+olcAttributeTypes: {9}( 1.3.6.1.4.1.56822.1.1.1.10   NAME 'mmCourseDeletedAt
+ '   DESC 'MultaMedio mmCourseDeletedAt Attribute'   EQUALITY caseIgnoreMatc
+ h   SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1.4.1.1466.115.121.1.1
+ 5'   SINGLE-VALUE   )
+olcAttributeTypes: {10}( 1.3.6.1.4.1.56822.1.1.1.11   NAME 'mmCourseDeletedB
+ y'   DESC 'MultaMedio mmCourseDeletedBy Attribute'   EQUALITY caseIgnoreMat
+ ch   SUBSTR caseIgnoreSubstringsMatch   SYNTAX '1.3.6.1.4.1.1466.115.121.1.
+ 15'   SINGLE-VALUE   )
+olcObjectClasses: {0}( 1.3.6.1.4.1.56822.1.1.1   NAME 'mmCourseGroups'   DES
+ C 'MultaMedio mmCourseGroups Objectclass'   AUXILIARY   MUST (mmCourseCateg
+ oryCreatedAt $ mmCourseCategoryCreatedBy $ mmCourseCategoryName )   MAY ( m
+ mCourseCategoryDesc $ mmCourseFullName $ mmCourseShortName $ mmCourseCatego
+ ryLastEditedAt $ mmCourseCategoryLastEditedBy $ mmCourseDeleted $ mmCourseD
+ eletedAt $ mmCourseDeletedBy )    )
+structuralObjectClass: olcSchemaConfig
+entryUUID: c6b104c4-7d92-103b-90f9-ad1667624921
+creatorsName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+createTimestamp: 20210720104125Z
+entryCSN: 20210720104125.311573Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20210720104125Z

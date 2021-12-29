@@ -1,0 +1,231 @@
+# mmUser (202008)
+# $Customized for OpenLDAP$
+################################################################################
+# dn: cn=schema
+################################################################################
+#
+dn: cn=mmUser,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: mmUser
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.1
+    NAME 'mmUserIsBlocked'
+    DESC 'MultaMedio mmUserIsBlocked Attribute'
+    EQUALITY integerMatch
+    ORDERING integerOrderingMatch
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.2
+    NAME 'mmUserStatusText'
+    DESC 'MultaMedio mmUserStatusText Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.3
+    NAME 'mmUserDateOfBirth'
+    DESC 'MultaMedio mmUserDateOfBirth Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE 
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.4
+    NAME 'mmUserPlaceOfBirth'
+    DESC 'MultaMedio mmUserPlaceOfBirth Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE 
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.5
+    NAME 'mmUserParent'
+    DESC 'MultaMedio mmUserParent Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE 
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.6
+    NAME 'mmUserParentOf'
+    DESC 'MultaMedio mmUserParentOf Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE 
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.7
+    NAME 'mmUserAddress'
+    DESC 'MultaMedio mmUserAddress Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.8
+    NAME 'mmUserPostalCode'
+    DESC 'MultaMedio mmUserPostalCode Attribute'
+    SUP postalCode
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.9
+    NAME 'mmUserCity'
+    DESC 'MultaMedio mmUserCity Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.10
+    NAME 'mmUserCountry'
+    DESC 'ISO 3166 two-letter country code'
+    SUP co
+    SINGLE-VALUE )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.11
+    NAME 'mmUserFax'
+    DESC 'MultaMedio mmUserFax Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.12
+    NAME 'mmUserTelephone'
+    DESC 'MultaMedio mmUserTelephone Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.13
+    NAME 'mmUserMobile'
+    DESC 'MultaMedio mmUserMobile Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.14
+    NAME 'mmUserRole'
+    DESC 'MultaMedio mmUserRole Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.15
+    NAME 'mmUserManager'
+    DESC 'Reference to a DN of a person which is assigned as the manager of a specific resource'
+    SUP distinguishedName
+    SINGLE-VALUE )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.16
+    NAME 'mmUserInstitute'
+    DESC 'User institute DN (Replaces eduPersonOrgDN attribute of eduPerson class)'
+    EQUALITY distinguishedNameMatch
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.12
+    SINGLE-VALUE )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.17
+    NAME 'mmUserAdministrativeArea'
+    DESC 'User Administration Area DN (Replaces secretary attribute of inetOrgPerson class)'
+    EQUALITY distinguishedNameMatch
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.18
+    NAME 'mmUserCreatedAt'
+    DESC 'MultaMedio mmUserCreatedAt Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.19
+    NAME 'mmUserCreatedBy'
+    DESC 'MultaMedio mmUserCreatedBy Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.20
+    NAME 'mmUserLastLogin'
+    DESC 'MultaMedio mmUserLastLogin Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.21
+    NAME 'mmUserLastEditedAt'
+    DESC 'MultaMedio mmUserLastEditedAt Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.22
+    NAME 'mmUserLastEditedBy'
+    DESC 'MultaMedio mmUserLastEditedBy Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.23
+    NAME 'mmUserDeleted'
+    DESC 'MultaMedio mmUserDeleted Attribute'
+    EQUALITY integerMatch
+    ORDERING integerOrderingMatch
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.24
+    NAME 'mmUserDeletedAt'
+    DESC 'MultaMedio mmUserDeletedAt Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+olcAttributeTypes: ( 1.3.6.1.4.1.56822.1.1.2.25
+    NAME 'mmUserDeletedBy'
+    DESC 'MultaMedio mmUserDeletedBy Attribute'
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE
+    )
+#
+################################################################################
+#
+olcObjectClasses: ( 1.3.6.1.4.1.56822.1.1.2
+    NAME 'mmUser'
+    DESC 'MultaMedio mmUser Objectclass'
+    AUXILIARY
+    MUST ( mmUserCreatedAt $ mmUserCreatedBy  $ mmUserManager $ mmUserInstitute  $  mmUserIsBlocked $ mmUserStatusText ) 
+    MAY ( mmUserParent $ mmUserParentOf $ mmUserDateOfBirth $ mmUserPlaceOfBirth $ mmUserAddress $ mmUserPostalCode $ mmUserCity $ mmUserCountry $ mmUserFax $ mmUserTelephone $ mmUserMobile $ mmUserRole $ mmUserAdministrativeArea $ mmUserLastLogin $ mmUserLastEditedAt $ mmUserLastEditedBy $ mmUserDeleted $ mmUserDeletedAt $ mmUserDeletedBy )
+    )
+#
+################################################################################

@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  # Kitchen Planner
+  ## Mariadb
+  ldaply-mariadb:
+    image: mariadb
+    ports:
+      - 40000:3306
+    volumes:
+      - ldaply_database:/var/lib/mysql
+      - ./data/db/dump/init/ldaply.sql:/docker-entrypoint-initdb.d/ldaply.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: LcxC277FGr4t8K+rv/d3]N
+      MYSQL_DATABASE: ldaply
+
+  ## Server
+  ldaply-server:
+    build:
+      context: ./server
+    image: ldaply-server:2021050400
+    volumes:
+      - ./server:/var/www/
+    ports:
+      - "40001:80"
+    depends_on:
+      - ldaply-mariadb
+
+  ## Client
+  ldaply-client:
+    build:
+      context: ./client
+    image: ldaply-client:2021050400
+    volumes:
+      - ./client:/var/www/html/ldaply
+    ports:
+      - "40002:4200"
+    depends_on:
+      - ldaply-server
+
+volumes:
+  ldaply_database:

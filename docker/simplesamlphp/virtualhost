@@ -1,0 +1,7 @@
+<VirtualHost *:40022> ServerName dssimplesamlphp 
+ServerAlias dssimplesamlphp 
+ServerAdmin webmaster@localhost 
+DocumentRoot /var/www/html/simplesamlphp/www
+ErrorLog ${APACHE_LOG_DIR}/error.log 
+CustomLog ${APACHE_LOG_DIR}/access.log combined 
+</VirtualHost>

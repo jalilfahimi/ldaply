@@ -1,0 +1,77 @@
+@media only screen and (min-width: 1300px) {
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  footer {
+    padding: 0 !important;
+    margin-top: min(3em) !important;
+    margin-bottom: 1em !important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  body,
+  a,
+  li,
+  ul,
+  a,
+  select,
+  option,
+  table,
+  blockquote,
+  input {
+    font-size: 0.825rem !important;
+  }
+  legend {
+    font-size: 1.25rem !important;
+  }
+  .btn {
+    font-size: 0.695rem !important;
+  }
+
+  .btn, .btn > i.fas, .btn > i.fa, .btn > i.far {
+    font-size: 0.725rem !important;
+  }
+
+  span.spinner-border.spinner-border-sm {
+    max-width: 16px;
+    max-height: 16px;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  body,
+  a,
+  li,
+  ul,
+  a,
+  select,
+  option,
+  table,
+  blockquote,
+  input {
+    font-size: 0.775rem !important;
+  }
+  legend {
+    font-size: 1.125rem !important;
+  }
+  .btn {
+    font-size: 0.615rem !important;
+  }
+
+  .btn, .btn > i.fas, .btn > i.fa, .btn > i.far {
+    font-size: 0.625rem !important;
+  }
+
+  span.spinner-border.spinner-border-sm {
+    max-width: 12px;
+    max-height: 12px;
+  }
+}

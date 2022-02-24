@@ -25,9 +25,14 @@ final class UsersController extends Controller
         }
     }
 
+    /**
+     *
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
+     */
     public function register(Request $request)
     {
-
         $minlength = CORE::defaults()['passwordminlength'];
         $regex = CORE::defaults()['passwordregex'];
 
@@ -43,18 +48,17 @@ final class UsersController extends Controller
             $regex = CFG::get('passwordregex');
         }
 
-        //
-
         $fields = $request->validate([
             'firstname' => 'required|string',
             'lastname' => 'required|string',
             'email' => 'required|string|unique:users,email',
-            'password' => 'required|
-            string|
-            confirmed|
-            min:' . $minlength . '|
-            regex:/' . $regex . '/|
-            '
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                'min:' . $minlength,
+                'regex:/' . $regex . '/'
+            ]
         ]);
 
         $user = User::create([
@@ -66,14 +70,17 @@ final class UsersController extends Controller
 
         $token = $user->createToken(self::$token)->plainTextToken;
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
+        $response = ['user' => $user, 'token' => $token];
 
         return response($response, 201);
     }
 
+    /**
+     *
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
+     */
     public function login(Request $request)
     {
         $fields = $request->validate([
@@ -87,29 +94,39 @@ final class UsersController extends Controller
 
         // Check password
         if (!$user || !Hash::check($fields['password'], $user->password)) {
-            return response([
-                'message' => LTR::get('loginfail', in_array('language', $fields) ? $fields['language'] : 'en')
-            ], 401);
+            return response(
+                [
+                    'msg' => LTR::get('loginfail', in_array('language', $fields) ?
+                        $fields['language'] : CORE::defaults()['language'])
+                ],
+                401
+            );
         }
 
         $token = $user->createToken(self::$token)->plainTextToken;
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
+        $response = ['user' => $user, 'token' => $token];
 
         return response($response, 201);
     }
 
+    /**
+     *
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
+     */
     public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
-        return [
-            'message' => 'Logged out'
-        ];
+        $request->user()->tokens()->delete();
+        return  response(['msg' => 'OK'], 201);;
     }
 
+    /**
+     *
+     *
+     * @return string
+     */
     private function token(): string
     {
         if (CFG::exists('apptoken')) {

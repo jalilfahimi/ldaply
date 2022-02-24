@@ -12,14 +12,14 @@ require_once('lib.php');
 
 /**
  * Language translations for English.
- * 
+ *
  * @author Jalil Fahimi (jalilfahimi535@gmail.com)
  */
 final class EN extends ITranslation
 {
     /**
      * Returns the actual translations.
-     * 
+     *
      * @return array
      */
     public static function strings(): array
@@ -32,6 +32,7 @@ final class EN extends ITranslation
             'ldapnoextension' => 'The PHP LDAP module does not seem to be present. Please ensure it is installed and enabled.',
             'ldapnotconfigured' => 'The LDAP host url is currently not configured.',
             'connectingldapsuccess' => 'Connecting to your LDAP server was successful.',
+            'entriesfound' => 'Entries found:',
             'pagedresultsnotsupp' => 'LDAP paged results not supported (either your PHP version lacks support, you have configured the connection to use LDAP protocol version 2 or we cannot contact your LDAP server to see if paged support is available.)',
         ];
     }

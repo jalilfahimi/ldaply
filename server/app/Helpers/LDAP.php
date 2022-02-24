@@ -104,7 +104,7 @@ if (!defined('LDAP_DN_SPECIAL_CHARS_QUOTED_ALPHA_REGEX')) {
 
 /**
  * Type definition for LDAP configuration schema.
- * 
+ *
  * @author Jalil Fahimi <jalilfahimi535@gmail.com>
  */
 final class LDAPCFG
@@ -182,7 +182,7 @@ final class LDAPCFG
     private $anonymous = false;
 
     /**
-     * 
+     *
      * @param string    $host
      * @param string    $base_dn
      * @param string    $bind_dn
@@ -194,7 +194,7 @@ final class LDAPCFG
      * @param int       $pagesize
      * @param string    $pagedresultscontrol
      * @param string    $rootdse
-     * 
+     *
      * @author Jalil Fahimi <jalilfahimi535@gmail.com>
      */
     public function __construct(
@@ -259,7 +259,7 @@ final class LDAPCFG
 
 /**
  * Helper class for LDAP.
- * 
+ *
  * @author Jalil Fahimi <jalilfahimi535@gmail.com>
  */
 final class LDAP
@@ -278,7 +278,7 @@ final class LDAP
 
     /**
      *
-     * @var object
+     * @var Connection
      */
     private $connection;
 
@@ -289,8 +289,14 @@ final class LDAP
     private $initialized = false;
 
     /**
-     * 
-     * 
+     *
+     * @var string
+     */
+    private $msg = false;
+
+    /**
+     *
+     *
      * @param LDAPCFG $cfg
      * @param User    $user
      */
@@ -298,11 +304,12 @@ final class LDAP
     {
         $this->config = $cfg;
         $this->user = $user;
+        $this->user->language = $this->user->language ?  $this->user->language : CORE::defaults()['language'];
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * @return object
      */
     public function connect(): object
@@ -332,11 +339,45 @@ final class LDAP
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * @return string
      */
     public function test(): string
+    {
+        if (!function_exists('ldap_connect')) {
+            return LTR::get('ldapnoextension', $this->user->language);
+        }
+        if (!$this->initialized) {
+            $this->init();
+        }
+        try {
+            if (!$this->isValid()) {
+                return $this->getMessage();
+            }
+            $query = $this->connection->query();
+            $entries = $query->select()->where('ou', '*')->get();
+            $count = count($entries);
+
+            $msg = LTR::get('connectingldapsuccess', $this->user->language);
+            $extendedmsg = LTR::get('entriesfound', $this->user->language) . ' ' . $count;
+
+            return $msg . ' ' . $extendedmsg;
+        } catch (\LdapRecord\Auth\BindException $e) {
+            $error = $e->getDetailedError();
+            $msg = $error->getErrorMessage();
+            Log::debug($msg);
+            $this->msg = $msg;
+            return $msg;
+        }
+    }
+
+    /**
+     *
+     *
+     * @return bool
+     */
+    public function isValid(): bool
     {
         if (!function_exists('ldap_connect')) {
             return LTR::get('ldapnoextension', $this->user->language);
@@ -352,21 +393,32 @@ final class LDAP
                 } catch (\LdapRecord\Auth\BindException $e) {
                     $error = $e->getDetailedError();
                     $msg = $error->getErrorMessage();
-                    Log::debug($msg);
-                    return $msg;
+                    $this->msg = $msg;
+                    return false;
                 }
             }
-            return LTR::get('connectingldapsuccess', $this->user->language);
+            return true;
         } catch (\LdapRecord\Auth\BindException $e) {
             $error = $e->getDetailedError();
             $msg = $error->getErrorMessage();
             Log::debug($msg);
-            return $msg;
+            $this->msg = $msg;
+            return false;
         }
     }
 
     /**
-     * 
+     *
+     *
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->msg;
+    }
+
+    /**
+     *
      *
      * @return void
      */

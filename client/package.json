@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
     "@angular/service-worker": "~13.1.0",
+    "blk-design-system-angular": "^1.0.0",
+    "bootstrap": "^5.1.3",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

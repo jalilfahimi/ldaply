@@ -1,0 +1,163 @@
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.975rem;
+  min-height: 100vh;
+}
+
+.wrapper {
+  padding-bottom: 6rem;     /* Footer height */
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 6rem;             /* Footer height */
+}
+
+.card {
+  &-title,
+  &-header {
+    color: inherit;
+  }
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.link:hover {
+  color: $blue !important;
+}
+
+
+// For firefox to unable red borders for required inputs
+input:required {
+  box-shadow: none;
+}
+
+.breadcrumb {
+  padding-left: 0;
+}
+
+.red {
+  color: $red !important;
+}
+
+.blue {
+  color: $blue !important;
+}
+
+.green {
+  color: $green !important;
+}
+
+.orange {
+  color: $orange !important;
+}
+
+.yellow {
+  color: $yellow !important;
+}
+
+.cyan {
+  color: $cyan !important;
+}
+
+.gray-500 {
+  color: $gray-500 !important;
+}
+
+.table th,
+.table tr {
+  padding-left: 0 !important;
+}
+
+.table th:last-child,
+.table tr:last-child {
+  padding-right: 0 !important;
+}
+
+.btn-normal {
+  font-size: inherit !important;
+  text-transform: none !important;
+}
+
+.btn > i.fas, .btn > i.fa, .btn > i.far {
+  font-size: 0.775rem;
+}
+
+.loading-spinner-global {
+  margin: 2rem;
+  height: 3rem;
+  width: 3rem;
+}
+
+.modal {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  z-index: 3;
+}
+
+.btn {
+  font-size: 85%;
+  &:focus,
+  &:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.paging-row-input {
+  margin-top: 0.225rem;
+}
+
+.table th,
+.table td {
+  padding-left: 0;
+  vertical-align: middle !important ;
+}
+
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  padding-left: 0.525rem !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.mmcard {
+  height: 95%;
+  max-height: 95%;
+
+  .card-header {
+    text-transform: uppercase;
+    font-size: 90%;
+  }
+}
+
+@mixin prevent-selection {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+th,
+legend,
+.modal-header,
+.global-selection-prevent {
+  @include prevent-selection;
+}
